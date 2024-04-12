@@ -19,7 +19,7 @@ class Product(db.Model):
     # Defines persistence and query methods
     @classmethod
     def find_by_id(cls, _id):
-        return cls.query.get(_id_)
+        return cls.query.get(_id)
 
     @classmethod
     def find_all(cls):
