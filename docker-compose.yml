@@ -1,12 +1,21 @@
+networks:
+  frontend:
+  backend:
+
 services:
   productservice:
     build: product-service
     volumes:
       - "./config:/config"
+    networks:
+      - frontend
+      - backend
   web:
     build: nginx
     ports:
       - "80:80"
+    networks:
+      - frontend
   
   db:
     image: mysql
@@ -14,6 +23,8 @@ services:
     volumes:
       - "./db/init.sql:/data/application/init.sql"
       - "db-volume:/var/lib/mysql"
+    networks:
+      - backend
     environment:
       - MYSQL_ROOT_PASSWORD=password
 
