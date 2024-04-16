@@ -54,7 +54,7 @@ def get_product(id):
             return jsonify(product.json)
         log.warning(f'GET /product/{id}: Product not found')
         return f'Product with id {id} not found', 404
-    except exc.SQLAlcehmyError:
+    except exc.SQLAlchemyError:
         log.exception(f'An exception occurred while retrieving product {id}')
         return f'An exception occurred while retrieving product {id}', 500
 
@@ -77,7 +77,7 @@ def post_product():
 
         # Return the jsonified Product
         return jsonify(product.json), 201
-    except exc.SQLALchemyError:
+    except exc.SQLAlchemyError:
         log.exception(f'An exception occurred while creating product with name: {product.name}')
         return f'An exception occurred while creating product with name: {product.name}', 500
 
